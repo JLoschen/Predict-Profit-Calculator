@@ -64,7 +64,7 @@ namespace PredictItTradeHistoryCalculator
             else
                 Type = TransactionType.Buy;
 
-            ProfitPerShare = Profit / Shares;
+            ProfitPerShare = (Profit / Shares ) * 100;
             //Console.WriteLine($"Profit/Share {ProfitPerShare}");
 
             SharePrice = Price - ProfitPerShare;

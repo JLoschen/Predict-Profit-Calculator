@@ -8,7 +8,6 @@ namespace PredictItTradeHistoryCalculator
         {
             (new HistoryCalculator()).Run();
             //(new DepositCalculator()).Run();
-            //(new ProfitLossCalculator()).Run();
         }
     }
 }
