@@ -1,0 +1,15 @@
+C:\Users\Josh\source\repos\PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator\bin\Debug\netcoreapp3.1\PredictItTradeHistoryCalculator.exe
+C:\Users\Josh\source\repos\PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator\bin\Debug\netcoreapp3.1\PredictItTradeHistoryCalculator.deps.json
+C:\Users\Josh\source\repos\PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator\bin\Debug\netcoreapp3.1\PredictItTradeHistoryCalculator.runtimeconfig.json
+C:\Users\Josh\source\repos\PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator\bin\Debug\netcoreapp3.1\PredictItTradeHistoryCalculator.runtimeconfig.dev.json
+C:\Users\Josh\source\repos\PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator\bin\Debug\netcoreapp3.1\PredictItTradeHistoryCalculator.dll
+C:\Users\Josh\source\repos\PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator\bin\Debug\netcoreapp3.1\PredictItTradeHistoryCalculator.pdb
+C:\Users\Josh\source\repos\PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator\obj\Debug\netcoreapp3.1\PredictItTradeHistoryCalculator.AssemblyInfoInputs.cache
+C:\Users\Josh\source\repos\PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator\obj\Debug\netcoreapp3.1\PredictItTradeHistoryCalculator.AssemblyInfo.cs
+C:\Users\Josh\source\repos\PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator\obj\Debug\netcoreapp3.1\PredictItTradeHistoryCalculator.dll
+C:\Users\Josh\source\repos\PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator\obj\Debug\netcoreapp3.1\PredictItTradeHistoryCalculator.pdb
+C:\Users\Josh\source\repos\PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator\obj\Debug\netcoreapp3.1\PredictItTradeHistoryCalculator.genruntimeconfig.cache
+C:\Users\Josh\source\repos\PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator\obj\Debug\netcoreapp3.1\PredictItTradeHistoryCalculator.csprojAssemblyReference.cache
+C:\Users\Josh\source\repos\PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator\bin\Debug\netcoreapp3.1\CsvHelper.dll
+C:\Users\Josh\source\repos\PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator\obj\Debug\netcoreapp3.1\PredictItTradeHistoryCalculator.csproj.CoreCompileInputs.cache
+C:\Users\Josh\source\repos\PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator\obj\Debug\netcoreapp3.1\PredictItTradeHistoryCalculator.csproj.CopyComplete
