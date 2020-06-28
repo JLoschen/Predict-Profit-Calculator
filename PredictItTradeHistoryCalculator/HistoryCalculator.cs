@@ -38,6 +38,39 @@ namespace PredictItTradeHistoryCalculator
                 if (Math.Abs(market.Profit) > 5)
                     market.Print();
             }
+
+            //PrintContractInMarket("Who will win the 2020 U.S. presidential election", "Trump", 14, trades);
+            //PrintContractInMarket("Who will win the 2020 U.S. presidential election", "Biden", 14, trades);
+            //PrintContractInMarket("Which party will win the 2020 U.S. presidential election", "Democratic", 14, trades);
+            //PrintContractInMarket("Which party will win the 2020 U.S. presidential election", "Republican", 14, trades);
+
+            //PrintContractInMarket("What will be the Electoral College margin in the 2020 presidential election", "Dems-by", 14, trades);
+            //PrintContractInMarket("What will be the Electoral College margin in the 2020 presidential election", "GOP-by", 14, trades);
+
+            //PrintContractInMarket("What will be the popular vote margin in the 2020 presidential election", "Dems-by", 14, trades);
+            //PrintContractInMarket("What will be the popular vote margin in the 2020 presidential election", "GOP-by", 14, trades);
+
+            //PrintContractInMarket("Will Alexandria Ocasio-Cortez win the Democratic primary for NY's 14th District", "Yes", 60, trades);
+            //PrintContractInMarket("Will Hillary Clinton  run for president in 2020", "No", 100, trades);
+            //PrintContractInMarket("Will Michelle Obama run for president in 2020", "No", 100, trades);
+            //PrintContractInMarket("Will Rashida Tlaib win the Democratic primary for Michigan's 13th District", "Yes", 100, trades);
+        }
+
+        private void PrintContractInMarket(string market, string contract, int numDays, List<Trade> trades)
+        {
+            var marketTrades = trades.Where(t => t.MarketName.Contains(market)).ToList();
+            var days = DateTime.Now.AddDays(numDays * -1);
+            var lastMonth = marketTrades.Where(t => t.Date > days).ToList();
+            var contractTrades = lastMonth.Where(t => t.Contract.Contains(contract)).ToList();
+
+            var totalProfit = contractTrades.Sum(t => t.ProfitLessFees);
+            var averageCost = contractTrades.Average(t => t.SharePrice);
+            var profitPerShare = contractTrades.Where(t => t.Type != TransactionType.Buy).Average(t => t.ProfitPerShare).ToString("#,##0.000").PadLeft(7);
+            var totalSharesTraded = contractTrades.Sum(t => t.Shares);
+
+            Console.WriteLine($"Market: {market}");
+            Console.WriteLine($"Contract:{contract}   Days Back:{numDays}   Profit:{totalProfit:c}   Average Cost:{averageCost:c}  Profit/Share{profitPerShare}  Shares Traded:{totalSharesTraded}\n");
+            //Console.WriteLine($"US Presidency Trump trades- ");
         }
 
         public List<Market> GetMarkets(List<Trade> trades)

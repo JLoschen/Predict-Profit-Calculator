@@ -8,8 +8,8 @@ namespace PredictItTradeHistoryCalculator
 {
     public class DepositCalculator
     {
-        //private readonly string _historyCsvPath = @"C:\Users\Josh\Documents\PredictIt\WalletHistory.csv";
-        private readonly string _historyCsvPath = @"C:\Users\Josh\Documents\PredictIt\WalletHistory Jasperson.csv";
+        private readonly string _historyCsvPath = @"C:\Users\Josh\Documents\PredictIt\WalletHistory.csv";
+        //private readonly string _historyCsvPath = @"C:\Users\Josh\Documents\PredictIt\WalletHistory Jasperson.csv";
         public void Run()
         {
             var transactions = ReadCsv();

@@ -64,12 +64,10 @@ namespace PredictItTradeHistoryCalculator
             else
                 Type = TransactionType.Buy;
 
-            ProfitPerShare = (Profit / Shares ) * 100;
-            //Console.WriteLine($"Profit/Share {ProfitPerShare}");
+            var profitPerShare = (Profit / Shares);
+            ProfitPerShare = profitPerShare * 100;
 
-            SharePrice = Price - ProfitPerShare;
-
-            //Console.WriteLine($"Share Price:{SharePrice:c}");
+            SharePrice = Price - profitPerShare;
         }
 
         public DateTime Date { get; set; }
@@ -78,7 +76,6 @@ namespace PredictItTradeHistoryCalculator
         public float Profit { get; set; }
         public float ProfitLessFees { get; set; }
         public float Fee { get; set; }
-        public float PurchasePrice { get; set; }//only relevant for Close, Sell
         public float Cash { get; set; }
         public float Price { get; set; }
         public int Shares { get; set; }
