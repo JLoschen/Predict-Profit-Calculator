@@ -32,12 +32,12 @@ namespace PredictItTradeHistoryCalculator
             //PrintMarketBreakdown(trades, "Who will win the 2020 Iowa Democratic caucuses?");
             //PrintMarketBreakdown(trades, "Who will win the 2020 New Hampshire Democratic primary?");
 
-            var markets = GetMarkets(trades);
-            foreach (var market in markets.OrderBy(s => s.Profit))
-            {
-                if (Math.Abs(market.Profit) > 5)
-                    market.Print();
-            }
+            //var markets = GetMarkets(trades);
+            //foreach (var market in markets.OrderBy(s => s.Profit))
+            //{
+            //    if (Math.Abs(market.Profit) > 5)
+            //        market.Print();
+            //}
 
             //PrintContractInMarket("Who will win the 2020 U.S. presidential election", "Trump", 14, trades);
             //PrintContractInMarket("Who will win the 2020 U.S. presidential election", "Biden", 14, trades);
@@ -54,6 +54,19 @@ namespace PredictItTradeHistoryCalculator
             //PrintContractInMarket("Will Hillary Clinton  run for president in 2020", "No", 100, trades);
             //PrintContractInMarket("Will Michelle Obama run for president in 2020", "No", 100, trades);
             //PrintContractInMarket("Will Rashida Tlaib win the Democratic primary for Michigan's 13th District", "Yes", 100, trades);
+
+            var days = trades.GroupBy(t => t.Date.Date).OrderBy(t => t.Key);
+            var winLoss = 0.0;
+            foreach(var day in days)
+            {
+                var sum = day.Sum(s => s.ProfitLessFees);
+                var dollars = $"{sum:$###0.00}".PadLeft(9);
+                winLoss += sum;
+
+                var winLossText = $"{winLoss:$###0.00}".PadLeft(9);
+                Console.WriteLine($"{day.Key.ToShortDateString(),10}, {dollars}, {winLossText}");
+            }
+
         }
 
         private void PrintContractInMarket(string market, string contract, int numDays, List<Trade> trades)
@@ -182,6 +195,11 @@ namespace PredictItTradeHistoryCalculator
                 }
             }
             return trades;
+        }
+
+        private void CalculateArbitrage(int environment)
+        {
+            //var 
         }
     }
 }

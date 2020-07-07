@@ -59,6 +59,17 @@ namespace PredictItTradeHistoryCalculator
         //Type,Date and Time,Confirmation Number,Net Amount,Fee,Status
         public DepositWithdrawal(string line)
         {
+
+            line = line.Replace("$1,", "1");
+            line = line.Replace("$2,", "2");
+            line = line.Replace("$3,", "3");
+            line = line.Replace("$4,", "4");
+            line = line.Replace("$5,", "5");
+            line = line.Replace("$6,", "6");
+            line = line.Replace("$7,", "7");
+            line = line.Replace("$8,", "8");
+            line = line.Replace("$9,", "9");
+
             var props = line.Split(",");
             IsDeposit = props[0].Contains("Deposit");
             Date = DateTime.Parse(props[1].Replace("ET", ""));
@@ -71,6 +82,8 @@ namespace PredictItTradeHistoryCalculator
                 fee = fee.Replace(")", "");
                 Fees = float.Parse(fee.Replace("$", "").Replace("\"", ""));
             }
+            if(IsDeposit)
+                Console.WriteLine($"adding {Amount:c}");
         }
 
         public bool IsDeposit { get; set; }
