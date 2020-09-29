@@ -8,7 +8,8 @@ namespace PredictItTradeHistoryCalculator
 {
     public class HistoryCalculator
     {
-        private readonly string _filePath = @"C:\Users\Josh\Documents\PredictIt\TradeHistory.csv";
+        //private readonly string _filePath = @"C:\Users\Josh\Documents\PredictIt\TradeHistory(10).csv";
+        private readonly string _filePath = @"C:\Users\Josh\Documents\PredictIt\TradeHistory(10).csv";
         //private readonly string _filePath = @"C:\Users\Josh\Documents\PredictIt\TradeHistory Jasperson.csv";
         public void Run()
         {
@@ -24,13 +25,18 @@ namespace PredictItTradeHistoryCalculator
             //PrintMarketBreakdown(trades, "What will be the Electoral College margin in the 2020 presidential election");
             //PrintMarketBreakdown(trades, "Who will win the 2020 U.S. presidential election?");
             //PrintMarketBreakdown(trades, "Which party will win the 2020 U.S. presidential election?");
-            //PrintMarketBreakdown(trades, "Who will win the 2020 Democratic vice presidential nomination?");
+            PrintMarketBreakdown(trades, "Who will win the 2020 Democratic vice presidential nomination?");
             //PrintMarketBreakdown(trades, "Who will win the 2020 Democratic presidential nomination?");
             //PrintMarketBreakdown(trades, "Will Hillary Clinton  run for president in 2020?");
             //PrintMarketBreakdown(trades, "Will the US economy hit 5.0%+ GDP growth by year-end 2020?");
             //PrintMarketBreakdown(trades, "Who will win the 2020 Republican presidential nomination?");
             //PrintMarketBreakdown(trades, "Who will win the 2020 Iowa Democratic caucuses?");
-            //PrintMarketBreakdown(trades, "Who will win the 2020 New Hampshire Democratic primary?");
+            PrintMarketBreakdown(trades, "What will be the margin in the New Jersey Democratic");
+            PrintMarketBreakdown(trades, "Who will be Trump's next Supreme Court nominee?");
+
+            //var trades2 = trades.Where(t => t.MarketName == "Who will be Trump's next Supreme Court nominee?").ToList();
+
+            //PrintAllTrades(trades2);
 
             //var markets = GetMarkets(trades);
             //foreach (var market in markets.OrderBy(s => s.Profit))
@@ -54,18 +60,19 @@ namespace PredictItTradeHistoryCalculator
             //PrintContractInMarket("Will Hillary Clinton  run for president in 2020", "No", 100, trades);
             //PrintContractInMarket("Will Michelle Obama run for president in 2020", "No", 100, trades);
             //PrintContractInMarket("Will Rashida Tlaib win the Democratic primary for Michigan's 13th District", "Yes", 100, trades);
+            //PrintContractInMarket("What will be the margin in the New Jersey Democratic", "to", 100, trades);
 
-            var days = trades.GroupBy(t => t.Date.Date).OrderBy(t => t.Key);
-            var winLoss = 0.0;
-            foreach(var day in days)
-            {
-                var sum = day.Sum(s => s.ProfitLessFees);
-                var dollars = $"{sum:$###0.00}".PadLeft(9);
-                winLoss += sum;
+            //var days = trades.GroupBy(t => t.Date.Date).OrderBy(t => t.Key);
+            //var winLoss = 0.0;
+            //foreach(var day in days)
+            //{
+            //    var sum = day.Sum(s => s.ProfitLessFees);
+            //    var dollars = $"{sum:$###0.00}".PadLeft(9);
+            //    winLoss += sum;
 
-                var winLossText = $"{winLoss:$###0.00}".PadLeft(9);
-                Console.WriteLine($"{day.Key.ToShortDateString(),10}, {dollars}, {winLossText}");
-            }
+            //    var winLossText = $"{winLoss:$###0.00}".PadLeft(9);
+            //    Console.WriteLine($"{day.Key.ToShortDateString(),10}, {dollars}, {winLossText}");
+            //}
 
         }
 
@@ -168,7 +175,8 @@ namespace PredictItTradeHistoryCalculator
         {
             float total = 0;
             int count = 0;
-            foreach (var trade in trades.OrderBy(t => t.Profit))
+            //foreach (var trade in trades.OrderBy(t => t.Profit))
+            foreach (var trade in trades.OrderBy(t => t.Date))
             {
                 if (trade.Profit != 0)
                 {

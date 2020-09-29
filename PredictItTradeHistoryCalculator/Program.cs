@@ -6,8 +6,9 @@ namespace PredictItTradeHistoryCalculator
     {
         static void Main(string[] args)
         {
-            //(new HistoryCalculator()).Run();
-            (new DepositCalculator()).Run();
+            (new HistoryCalculator()).Run();
+            //(new DepositCalculator()).Run();
+            //(new MarginCalculator()).Run();
         }
     }
 }
