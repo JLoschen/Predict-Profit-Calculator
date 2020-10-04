@@ -9,7 +9,7 @@ namespace PredictItTradeHistoryCalculator
     public class HistoryCalculator
     {
         //private readonly string _filePath = @"C:\Users\Josh\Documents\PredictIt\TradeHistory(10).csv";
-        private readonly string _filePath = @"C:\Users\Josh\Documents\PredictIt\TradeHistory(10).csv";
+        private readonly string _filePath = @"C:\Users\Josh\Documents\PredictIt\TradeHistory.csv";
         //private readonly string _filePath = @"C:\Users\Josh\Documents\PredictIt\TradeHistory Jasperson.csv";
         public void Run()
         {
@@ -17,14 +17,14 @@ namespace PredictItTradeHistoryCalculator
 
             //PrintAllTrades(trades);
 
-            //PrintMonthlyStats(trades);
+            PrintMonthlyStats(trades);
 
-            //PrintBreakdownByPrice(trades);
+            PrintBreakdownByPrice(trades);
 
             //PrintMarketBreakdown(trades, "Will NASA find");
             //PrintMarketBreakdown(trades, "What will be the Electoral College margin in the 2020 presidential election");
-            //PrintMarketBreakdown(trades, "Who will win the 2020 U.S. presidential election?");
-            //PrintMarketBreakdown(trades, "Which party will win the 2020 U.S. presidential election?");
+            PrintMarketBreakdown(trades, "Who will win the 2020 U.S. presidential election?");
+            PrintMarketBreakdown(trades, "Which party will win the 2020 U.S. presidential election?");
             PrintMarketBreakdown(trades, "Who will win the 2020 Democratic vice presidential nomination?");
             //PrintMarketBreakdown(trades, "Who will win the 2020 Democratic presidential nomination?");
             //PrintMarketBreakdown(trades, "Will Hillary Clinton  run for president in 2020?");
@@ -33,6 +33,7 @@ namespace PredictItTradeHistoryCalculator
             //PrintMarketBreakdown(trades, "Who will win the 2020 Iowa Democratic caucuses?");
             PrintMarketBreakdown(trades, "What will be the margin in the New Jersey Democratic");
             PrintMarketBreakdown(trades, "Who will be Trump's next Supreme Court nominee?");
+            PrintMarketBreakdown(trades, "What will be the popular vote margin in the 2020 presidential election?");
 
             //var trades2 = trades.Where(t => t.MarketName == "Who will be Trump's next Supreme Court nominee?").ToList();
 
