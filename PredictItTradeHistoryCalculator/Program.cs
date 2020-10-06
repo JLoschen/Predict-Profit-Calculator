@@ -9,7 +9,6 @@ namespace PredictItTradeHistoryCalculator
             //(new HistoryCalculator()).Run();
             //(new DepositCalculator()).Run();
             //(new MarginCalculator()).Run();
-
             (new ElectoralCollegeCalculator()).Run();
         }
     }

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PredictItTradeHistoryCalculator", "PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator.csproj", "{EE1644CB-CC58-449A-BBD1-A839A1096F77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PredictItTradeHistoryCalculator", "PredictItTradeHistoryCalculator\PredictItTradeHistoryCalculator.csproj", "{EE1644CB-CC58-449A-BBD1-A839A1096F77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiPriceRecorder", "ApiPriceRecorder\ApiPriceRecorder.csproj", "{3C88D787-CC23-459B-9E31-A3B73DB1131D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EE1644CB-CC58-449A-BBD1-A839A1096F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE1644CB-CC58-449A-BBD1-A839A1096F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE1644CB-CC58-449A-BBD1-A839A1096F77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C88D787-CC23-459B-9E31-A3B73DB1131D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C88D787-CC23-459B-9E31-A3B73DB1131D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C88D787-CC23-459B-9E31-A3B73DB1131D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C88D787-CC23-459B-9E31-A3B73DB1131D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
