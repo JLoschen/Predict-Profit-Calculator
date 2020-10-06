@@ -2,9 +2,9 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System;
-using System.Linq;
-using System.IO;
 using System.Diagnostics;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace ApiPriceRecorder.Services
 {
@@ -15,8 +15,33 @@ namespace ApiPriceRecorder.Services
         {
             _predictClient = predictClient;
         }
-        private int DemNom = 3633;
-        private int WhichParty = 2721;
+
+        public async Task<MarketModel> GetMarket(int Id)
+        {
+            try
+            {
+                using (HttpResponseMessage response = await _predictClient.GetAsync($"/markets/{Id}"))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+
+                        return JsonConvert.DeserializeObject<MarketModel>(json);
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);//Log somehow?
+            }
+            return null;
+        }
+
+        
 
         public async Task<string> DoTest()
         {
@@ -24,7 +49,7 @@ namespace ApiPriceRecorder.Services
             {
                 //using (HttpResponseMessage response = await _predictClient.GetAsync($"/markets/all"))
                 //using (HttpResponseMessage response = await _predictClient.GetAsync($"/markets/{DemNom}"))
-                using (HttpResponseMessage response = await _predictClient.GetAsync($"/markets/{WhichParty}"))
+                using (HttpResponseMessage response = await _predictClient.GetAsync($"/markets/5"))
                 {
                     if (response.IsSuccessStatusCode)
                     {
@@ -45,12 +70,6 @@ namespace ApiPriceRecorder.Services
                 return "error";
             }
             return "confirmed!";
-        }
-
-        public string GetTest()
-        {
-            
-            return "Result";
         }
     }
 }

@@ -3,6 +3,7 @@ using ApiPriceRecorder.Services.Abstractions;
 using Ninject.Modules;
 using System.Net.Http;
 using System;
+using System.Net.Http.Headers;
 
 namespace ApiPriceRecorder.Ninject
 {
@@ -16,6 +17,8 @@ namespace ApiPriceRecorder.Ninject
             {
                 BaseAddress = new Uri("http://www.predictit.org/api/marketdata/")
             };
+
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public override void Load()
