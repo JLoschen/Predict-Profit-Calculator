@@ -15,10 +15,11 @@ namespace ApiPriceRecorder.Ninject
         {
             _client = new HttpClient()
             {
-                BaseAddress = new Uri("http://www.predictit.org/api/marketdata/")
+                BaseAddress = new Uri("https://www.predictit.org/api/marketdata/markets/")
             };
 
-            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json")); /*;charset=utf-8*/
+            //_client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
         }
 
         public override void Load()
