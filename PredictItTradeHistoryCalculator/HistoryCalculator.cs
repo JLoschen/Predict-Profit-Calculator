@@ -132,28 +132,40 @@ namespace PredictItTradeHistoryCalculator
 
         private void PrintBreakdownByPrice(List<Trade> trades)
         {
+
             Console.WriteLine("\n-----Price Breakdown-----");
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 20; i++)
             {
-                var num = i * 10;
+                var num = i * 5; 
                 var lowerLimit = num;
-                var upperLimit = num + 10;
+                var upperLimit = num + 4;
+
+                //Console.WriteLine($"");
                 var tranche = trades.Where(s => lowerLimit <= s.SharePrice * 100 && s.SharePrice * 100 <= upperLimit && s.Type != TransactionType.Buy).ToList();
+                var totalProfit = tranche.Sum(s => s.Profit);
+                var totalTradedShares = tranche.Sum(t => t.Shares);
                 var total = tranche.Count;
-                var profit = tranche.Sum(s => s.Profit).ToString("$###0").PadLeft(7);
+                var totalDisplay = $"{total}".PadLeft(4);
+                var profit = totalProfit.ToString("$###0").PadLeft(7);
                 var profitLessFees = tranche.Sum(s => s.ProfitLessFees).ToString("$###0").PadLeft(7);
                 var fees = tranche.Sum(s => s.Fee).ToString("$#,##0.00").PadLeft(7);
-                var tradedShares = $"{tranche.Sum(t => t.Shares)}".PadLeft(6);
-                var profitPerShare = tranche.Average(g => g.ProfitPerShare).ToString("$#,##0.000").PadLeft(7);
+                var tradedShares = $"{totalTradedShares}".PadLeft(6);
+                //var profitPerShare = tranche.Average(g => g.ProfitPerShare).ToString("$#,##0.000").PadLeft(7);
                 string average = string.Empty;
                 if (tranche.Any())
                 {
                     average = tranche.Average(s => s.Profit).ToString("$#,##0.00").PadLeft(6);
                 }
 
-                var lowerBound = $"$0.{num}".PadLeft(5);
-                var upperBound = $"$0.{num+10}".PadLeft(6);
-                Console.WriteLine($"{lowerBound}-{upperBound}:  Trades:{total:D3}  Shares:{tradedShares}  Total Profit:{profit}   Fees:{fees}   Profit-Fees{profitLessFees:c}   PennyProfit/Share:{profitPerShare}");
+                var profitPerShare = totalProfit / totalTradedShares;
+                var profitPerShareDisplay = profitPerShare.ToString("$#,###0.000").PadLeft(7);
+
+                var profitPerTrade = totalProfit / tranche.Count;
+                var profitPerTradeDisplay = profitPerTrade.ToString("$#,###0.000").PadLeft(7);
+
+                var lowerBound = $"$0.{lowerLimit}".PadLeft(5);
+                var upperBound = $"$0.{upperLimit}".PadLeft(5);
+                Console.WriteLine($"{lowerBound}-{upperBound}:  Trades:{totalDisplay}  Shares:{tradedShares}  Total Profit:{profit}   Fees:{fees}   Profit-Fees{profitLessFees:c}   Profit/Share:{profitPerShareDisplay} Profit/Trade:{profitPerTradeDisplay}");//PennyProfit/Share:{profitPerShare} 
             }
         }
 

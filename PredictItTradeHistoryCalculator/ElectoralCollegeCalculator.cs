@@ -46,8 +46,8 @@ namespace PredictItTradeHistoryCalculator
             total += PrintBidenEv(sims, 344, 373);
             total += PrintBidenEv(sims, 374, 408);
             total += PrintBidenEv(sims, 409, 538);
-
-            Console.WriteLine($"{total:P2}");
+            Console.WriteLine($"-------------------------");
+            Console.WriteLine($"Total              :{total:P2}");
         }
 
 
@@ -72,9 +72,9 @@ namespace PredictItTradeHistoryCalculator
             var candidateSims = sims.Where(e => min <= e.EvCount && e.EvCount <= max);
             var totalOdds = candidateSims.Sum(c => c.TrumpProbability);
 
-            var percent = $"{totalOdds:P1}".PadLeft(6);
+            var percent = $"{totalOdds:P1}".PadLeft(5);
 
-            Console.WriteLine($"GOP By {Diff(min)} - {Diff(max)}  : {percent}");
+            Console.WriteLine($" GOP  By {Diff(min)} - {Diff(max, true)} :{percent}");
 
             return totalOdds;
         }
@@ -83,15 +83,20 @@ namespace PredictItTradeHistoryCalculator
         {
             var candidateSims = sims.Where(e => min <= e.EvCount && e.EvCount <= max);
             var totalOdds = candidateSims.Sum(c => c.BidenProbability);
-            var percent = $"{totalOdds:P1}".PadLeft(6);
-            Console.WriteLine($"DEM By {Diff(min)} - {Diff(max)}  : {percent}");
+            var percent = $"{totalOdds:P1}".PadLeft(5);
+            Console.WriteLine($" Dems By {Diff(min)} - {Diff(max, true)} :{percent}");
             return totalOdds;
         }
 
-        private string Diff(short ev)
+        private string Diff(short ev, bool addOne = false)
         {
             var diff = 538 - ev;
+            //Console.WriteLine($"538 - {ev} = {diff}");
+            
             var difference = ev - diff;
+            if (addOne)
+                difference++;
+            //Console.WriteLine($"{ev} - {diff} = {difference}");
 
             return $"{difference}".PadLeft(3);
         }
