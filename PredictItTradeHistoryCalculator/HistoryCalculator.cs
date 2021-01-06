@@ -9,7 +9,8 @@ namespace PredictItTradeHistoryCalculator
     public class HistoryCalculator
     {
         //private readonly string _filePath = @"C:\Users\Josh\Documents\PredictIt\TradeHistory(10).csv";
-        private readonly string _filePath = @"C:\Users\Josh\Documents\PredictIt\TradeHistory.csv";
+        //private readonly string _filePath = @"C:\Users\Josh\Documents\PredictIt\TradeHistory.csv";
+        private readonly string _filePath = @"C:\Users\Josh\Downloads\TradeHistory (14).csv";
         //private readonly string _filePath = @"C:\Users\Josh\Documents\PredictIt\TradeHistory Jasperson.csv";
         public void Run()
         {
@@ -19,22 +20,25 @@ namespace PredictItTradeHistoryCalculator
 
             PrintMonthlyStats(trades);
 
-            PrintBreakdownByPrice(trades);
+            //PrintBreakdownByPrice(trades);
 
             //PrintMarketBreakdown(trades, "Will NASA find");
             //PrintMarketBreakdown(trades, "What will be the Electoral College margin in the 2020 presidential election");
-            PrintMarketBreakdown(trades, "Who will win the 2020 U.S. presidential election?");
-            PrintMarketBreakdown(trades, "Which party will win the 2020 U.S. presidential election?");
-            PrintMarketBreakdown(trades, "Who will win the 2020 Democratic vice presidential nomination?");
+            //PrintMarketBreakdown(trades, "Who will win the 2020 U.S. presidential election?");
+            //PrintMarketBreakdown(trades, "Which party will win the 2020 U.S. presidential election?");
+            //PrintMarketBreakdown(trades, "Who will win the 2020 Democratic vice presidential nomination?");
             //PrintMarketBreakdown(trades, "Who will win the 2020 Democratic presidential nomination?");
             //PrintMarketBreakdown(trades, "Will Hillary Clinton  run for president in 2020?");
             //PrintMarketBreakdown(trades, "Will the US economy hit 5.0%+ GDP growth by year-end 2020?");
             //PrintMarketBreakdown(trades, "Who will win the 2020 Republican presidential nomination?");
             //PrintMarketBreakdown(trades, "Who will win the 2020 Iowa Democratic caucuses?");
-            PrintMarketBreakdown(trades, "What will be the margin in the New Jersey Democratic");
-            PrintMarketBreakdown(trades, "Who will be Trump's next Supreme Court nominee?");
-            PrintMarketBreakdown(trades, "What will be the popular vote margin in the 2020 presidential election?");
+            //PrintMarketBreakdown(trades, "What will be the margin in the New Jersey Democratic");
+            //PrintMarketBreakdown(trades, "Who will be Trump's next Supreme Court nominee?");
+            //PrintMarketBreakdown(trades, "What will be the popular vote margin in the 2020 presidential election?");
+            PrintMarketBreakdown(trades, "Which party will win the U.S. Senate special election in Georgia in 2020?");
+            PrintMarketBreakdown(trades, "Which party will control the Senate after 2020 election?");
 
+            PrintStatsOnDay(trades, new DateTime(2021, 1, 5));
             //var trades2 = trades.Where(t => t.MarketName == "Who will be Trump's next Supreme Court nominee?").ToList();
 
             //PrintAllTrades(trades2);
@@ -181,6 +185,45 @@ namespace PredictItTradeHistoryCalculator
                 var total = trade.ToList().Sum(s => s.ProfitLessFees).ToString("$###0").PadLeft(6);
                 var numTrades = $"{trade.Count()}".PadLeft(4);
                 Console.WriteLine($"{month}   Avg:{average}   Trades:{numTrades}  Shares:{totalShares}  Profit:{total}   PennyProfit/Share:{profitPerShare}");
+            }
+        }
+
+        private void PrintStatsOnDay(List<Trade> trades, DateTime day)
+        {
+            Console.WriteLine("\n-----Monthly Breakdown-----");
+            foreach (var trade in trades.GroupBy(t => t.Date.Date))
+            {
+                if(trade.Key.Date == day.Date)
+                {
+                    //var month = trade.First().Date.ToString("MMM");
+                    //var average = trade.ToList().Where(t => t.Type != TransactionType.Buy).Average(g => g.ProfitLessFees).ToString("$#,##0.00").PadLeft(6);
+                    //var profitPerShare = trade.ToList().Where(t => t.Type != TransactionType.Buy).Average(g => g.ProfitPerShare).ToString("$#,##0.000").PadLeft(7);
+                    //var totalShares = $"{trade.ToList().Sum(t => t.Shares)}".PadLeft(6);
+                    //var total = trade.ToList().Sum(s => s.ProfitLessFees).ToString("$###0").PadLeft(6);
+                    //var numTrades = $"{trade.Count()}".PadLeft(4);
+                    //Console.WriteLine($"{day.ToShortDateString()}   Avg:{average}   Trades:{numTrades}  Shares:{totalShares}  Profit:{total}   PennyProfit/Share:{profitPerShare}");
+                    var count = 0.0;
+                    foreach(var myTrade in trade.ToList().Where(t => t.Type != TransactionType.Buy && t.MarketName.Contains("Senate-confirmed")).OrderBy(t => t.Date))
+                    {
+                        count += myTrade.Profit;
+                        Console.WriteLine($"{myTrade.MarketName},{myTrade.Profit.ToString("$#,##0.00")},{count.ToString("$#,##0.00")}");
+                    }
+                    count = 0;
+                    Console.WriteLine("--------------------------------------------------");
+                    foreach (var myTrade in trade.ToList().Where(t => t.Type != TransactionType.Buy && t.MarketName.Contains("seats by party")).OrderBy(t => t.Date))
+                    {
+                        count += myTrade.Profit;
+                        Console.WriteLine($"{myTrade.MarketName},{myTrade.Profit.ToString("$#,##0.00")},{count.ToString("$#,##0.00")}");
+                    }
+
+                    count = 0;
+                    Console.WriteLine("--------------------------------------------------");
+                    foreach (var myTrade in trade.ToList().Where(t => t.Type != TransactionType.Buy && !t.MarketName.Contains("seats by party") && !t.MarketName.Contains("Senate-confirmed")).OrderBy(t => t.Date))
+                    {
+                        count += myTrade.Profit;
+                        Console.WriteLine($"{myTrade.MarketName},{myTrade.Profit.ToString("$#,##0.00")},{count.ToString("$#,##0.00")}");
+                    }
+                }
             }
         }
 

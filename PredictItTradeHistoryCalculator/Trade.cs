@@ -15,6 +15,8 @@ namespace PredictItTradeHistoryCalculator
                 Console.WriteLine("problem!");
             }
 
+            line = line.Replace("\\\"", string.Empty);
+
             if(totalQuotes > 2)
             {
                 Console.WriteLine("too many quotes");

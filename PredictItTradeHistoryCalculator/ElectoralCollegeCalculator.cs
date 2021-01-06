@@ -11,7 +11,7 @@ namespace PredictItTradeHistoryCalculator
     /// </summary>
     public class ElectoralCollegeCalculator
     {
-        private readonly string _filePath = @"C:\Users\Josh\Documents\PredictIt\538 election-forecasts-2020\presidential_ev_probabilities_2020.csv";
+        private readonly string _filePath = @"C:\Users\Josh\Documents\PredictIt\538 election-forecasts-2020\presidential_ev_probabilities_2020-Nov3rd.csv";
         private const int Biden = 1;
         private const int Trump = 0;
 

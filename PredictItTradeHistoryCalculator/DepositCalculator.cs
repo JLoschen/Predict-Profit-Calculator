@@ -43,12 +43,47 @@ namespace PredictItTradeHistoryCalculator
             var transactions = new List<DepositWithdrawal>();
             using(var file = new StreamReader(_historyCsvPath))
             {
+                float total = 0;
                 string line;
+                var lines = new List<string>();
                 while ((line = file.ReadLine()) != null)
                 {
                     if (!string.IsNullOrWhiteSpace(line) && !line.Contains("Type,Date and Time,Confirmation Number,"))
-                        transactions.Add(new DepositWithdrawal(line));
+                    {
+                        var deposit = new DepositWithdrawal(line);
+                        transactions.Add(deposit);
+                    }
                 }
+
+                transactions.Reverse();
+                foreach(var transaction in transactions)
+                {
+                    if (transaction.IsDeposit)
+                    {
+                        total += transaction.Amount;
+                    }
+                    else
+                    {
+                        total -= transaction.Amount;
+                    }
+                    //if (IsDeposit)
+                    //{
+                    //    
+                    //    Console.WriteLine($"adding {amount} {Date.ToShortDateString()}");
+                    //}
+                    var amount = $"{transaction.Amount:c0}".PadLeft(7);
+                    //var amount = transaction.Amount.ToString("$###0").PadLeft(6);
+                    var action = transaction.IsDeposit ? "    adding" : "withdrawal";
+                    var totalDisplay = $"{total:c0}".PadLeft(7);
+                    //var totalDisplay = total.ToString("$###0").PadLeft(7);
+                /*.ToShortDateString()*/
+                Console.WriteLine($"{transaction.Date:yyyy'-'MM'-'dd} {action} {amount} -> {totalDisplay}");
+                }
+                //lines.Reverse();
+                //foreach (var l in lines)
+                //{
+                //    Console.WriteLine(l);
+                //}
             }
             return transactions;
         }
@@ -82,8 +117,6 @@ namespace PredictItTradeHistoryCalculator
                 fee = fee.Replace(")", "");
                 Fees = float.Parse(fee.Replace("$", "").Replace("\"", ""));
             }
-            if(IsDeposit)
-                Console.WriteLine($"adding {Amount:c}");
         }
 
         public bool IsDeposit { get; set; }
